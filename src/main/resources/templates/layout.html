@@ -1,0 +1,44 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net/nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+  <!-- sbb CSS -->
+  <title>Hello</title>
+</head>
+<body>
+
+<nav class="navbar navbar-expand navbar-dark bg-dark" aria-label="Second navbar example">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">HOME</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExample02">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/login}">로그인</a>
+          <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/logout}">로그아웃</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/join}">회원가입</a>
+        </li>
+        <li class="nav-item">
+           <span sec:authentication="name" class="text-bg-light">ID : </span>
+        </li>
+      </ul>
+      <form role="search">
+        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+      </form>
+    </div>
+  </div>
+</nav>
+<!-- 기본 템플릿 안에 삽입될 내용 Start -->
+<th:block layout:fragment="content"></th:block>
+<!-- 기본 템플릿 안에 삽입될 내용 End -->
+</body>
+</html>
